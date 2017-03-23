@@ -51,11 +51,9 @@ namespace TextGeneration.UWP
 
         public async Task<string> LoadText(string fileuri)
         {
-            Debug.WriteLine("hejhejhej");
             HttpClient http = new HttpClient();
             HttpResponseMessage response = await http.GetAsync(fileuri);
             string text = await response.Content.ReadAsStringAsync();
-            Debug.WriteLine("tex = " + text);
             return text;
         }
     }
