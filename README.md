@@ -8,3 +8,5 @@ The algorithm is based on N-grams and Markov chains. I followed the article belo
 http://www.decontextualize.com/teaching/rwet/n-grams-and-markov-chains/
 
 The application can download full texts from the Lord of The Rings trilogy, some of the Harry Potter books, and a couple of books from the Stormbringer series. These are texts that I happened to find on the internet, and they can easily be replaced with something else.
+
+The project is implemented with Xamarin.Forms, in Visual Studio 2017 using a cross-platform solution. An Android and a Windows project is currently working. The iOS project is currently left untouched.
