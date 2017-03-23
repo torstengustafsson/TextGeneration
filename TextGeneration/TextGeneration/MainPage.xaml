@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TextGeneration;assembly=TextGeneration"
+             x:Class="TextGeneration.MainPage"
+             BackgroundColor="#333">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <RelativeLayout BindingContext="{local:MainPageViewModel}">
+
+                <!-- Header Text -->
+                <Label Text="Lord of the Rings" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="28" TextColor="White"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=50}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" />
+                <Label Text="Text Generator" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="20" TextColor="White" x:Name="title"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=80}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" />
+
+                <!-- LOTR Checkbox -->
+                <Image Source="CheckboxChecked.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFill" x:Name="checkLOTR"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.1}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=title, Property=Y, Factor=1, Constant=40}"/>
+                <Label Text="LOTR books" HeightRequest="30" VerticalTextAlignment="Center" FontAttributes="Bold" FontSize="12" TextColor="White" x:Name="lotrLabel"
+             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=checkLOTR, Property=X, Factor=1, Constant=40}"
+             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=title, Property=Y, Factor=1, Constant=40}" />
+
+                <!-- Harry Potter Checkbox -->
+                <Image Source="CheckboxUnchecked.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFill" x:Name="checkHP"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=title, Property=Y, Factor=1, Constant=40}"/>
+                <Label Text="Harry Potter books" HeightRequest="30" VerticalTextAlignment="Center" FontAttributes="Bold" FontSize="12" TextColor="White" x:Name="hpLabel"
+             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=checkHP, Property=X, Factor=1, Constant=40}"
+             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=title, Property=Y, Factor=1, Constant=40}" />
+
+                <!-- Sci. Papers Checkbox -->
+                <Image Source="CheckboxUnchecked.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFill" x:Name="checkStorm"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=checkLOTR, Property=Y, Factor=1, Constant=40}"/>
+                <Label Text="Stormbringer books" HeightRequest="30" VerticalTextAlignment="Center" FontAttributes="Bold" FontSize="12" TextColor="White" x:Name="stormLabel"
+             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=checkStorm, Property=X, Factor=1, Constant=40}"
+             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=checkLOTR, Property=Y, Factor=1, Constant=40}" />
+
+
+                <!-- Length Slider -->
+                <Label Text="{ Binding SliderLength_S }" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="12" TextColor="White" x:Name="lengthLabel"
+             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.1}"
+             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=checkStorm, Property=Y, Factor=1, Constant=40}"
+             RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.4}" />
+                <Slider Value="{ Binding SliderLength }" x:Name="lengthSlider"
+             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.1}"
+             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=lengthLabel, Property=Y, Factor=1, Constant=20}"
+             RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.4}" />
+
+                <!-- N Slider -->
+                <Label Text="{ Binding SliderN_S }" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="12" TextColor="White" x:Name="nLabel"
+             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5}"
+             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=checkStorm, Property=Y, Factor=1, Constant=40}"
+             RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.4}" />
+                <Slider Value="{ Binding SliderN }" x:Name="nSlider"
+             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5}"
+             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=nLabel, Property=Y, Factor=1, Constant=20}"
+             RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.4}" />
+
+                <!-- Generate Button -->
+                <Button BorderRadius="5" Text="Generate" Command="{Binding SetText}" BackgroundColor="#EDEDED" TextColor="Black" x:Name="buttonGenerate"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=lengthSlider, Property=Y, Factor=1, Constant=40}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.6}"/>
+
+                <!-- Speech Button -->
+                <Button BorderRadius="5" Text="Talk To Me!" Command="{Binding Speak}" BackgroundColor="#EDEDED" TextColor="Black" x:Name="buttonSpeak"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=buttonGenerate, Property=Y, Factor=1, Constant=60}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.6}"/>
+
+                <!-- Text Area -->
+                <RelativeLayout
+              RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.1}"
+              RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=buttonSpeak, Property=Y, Factor=1, Constant=80}"
+              RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.8}" >
+                    <Frame BackgroundColor="#EDEDED" x:Name="textFrame" 
+                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
+                        <Label Text="{Binding Text}" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="14" TextColor="Black" />
+                    </Frame>
+                    <RelativeLayout
+             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=textFrame, Property=Height, Factor=1, Constant=400}" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>
