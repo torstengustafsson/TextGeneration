@@ -51,8 +51,9 @@ namespace TextGeneration
             {
                 result += " " + s;
             }
+            
+            if (values.Count != 0) { unit = values[values.Count - 1]; }
 
-            unit = values[values.Count - 1];
 
             return result;
         }

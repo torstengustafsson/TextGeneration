@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using TextGeneration.UWP;
@@ -19,6 +21,7 @@ using Windows.UI.Xaml.Navigation;
 
 
 [assembly: Xamarin.Forms.Dependency(typeof(TextToSpeechImplementation))]
+[assembly: Xamarin.Forms.Dependency(typeof(LoadingBar))]
 
 namespace TextGeneration.UWP
 {
@@ -40,7 +43,6 @@ namespace TextGeneration.UWP
     public class LoadingBar : ILoadingBar
     {
         static int counter = 0;
-        //static ProgressBar progBar = null;
 
         public void SetNumTasks(int n)
         {
@@ -49,26 +51,12 @@ namespace TextGeneration.UWP
 
         public async Task<string> LoadText(string fileuri)
         {
-            //if (progBar == null)
-            //{
-            //    progBar = new ProgressBar();
-            //}
-
-            //string text = await new WebClient().DownloadStringTaskAsync(fileuri);
-            WebRequest request = WebRequest.Create(fileuri);
-            request.Credentials = CredentialCache.DefaultCredentials;
-            //((HttpWebRequest)request).UserAgent = ".NET Framework Example Client";
-            WebResponse response = await request.GetResponseAsync();
-            Stream dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string text = reader.ReadToEnd();
-
+            Debug.WriteLine("hejhejhej");
+            HttpClient http = new HttpClient();
+            HttpResponseMessage response = await http.GetAsync(fileuri);
+            string text = await response.Content.ReadAsStringAsync();
+            Debug.WriteLine("tex = " + text);
             return text;
-        }
-
-        Task<string> ILoadingBar.LoadText(string fileuri)
-        {
-            throw new NotImplementedException();
         }
     }
 
