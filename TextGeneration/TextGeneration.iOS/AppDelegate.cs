@@ -25,7 +25,7 @@ namespace TextGeneration.iOS
 			Xamarin.Forms.Forms.Init ();
 
             // TODO: implement this sometime
-			LoadApplication (new App (null));
+			LoadApplication (new App ());
 
 			return base.FinishedLaunching (app, options);
 		}

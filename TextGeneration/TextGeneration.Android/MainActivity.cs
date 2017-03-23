@@ -91,10 +91,9 @@ namespace TextGeneration.Droid
 			ToolbarResource = Resource.Layout.Toolbar; 
 
 			base.OnCreate (bundle);
-
-            LoadingBar loader = new LoadingBar();
+            
             Forms.Init (this, bundle);
-			LoadApplication (new TextGeneration.App (loader));
+			LoadApplication (new TextGeneration.App ());
 		}
     }
 }

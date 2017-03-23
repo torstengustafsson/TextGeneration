@@ -20,11 +20,11 @@ namespace TextGeneration
 
     public partial class App : Application
 	{
-		public App (ILoadingBar loader)
+		public App ()
 		{
 			InitializeComponent();
 
-            MainPage = new MainPage(loader);
+            MainPage = new MainPage();
 		}
 
 		protected override void OnStart ()

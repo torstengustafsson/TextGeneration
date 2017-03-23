@@ -10,13 +10,11 @@ namespace TextGeneration
 {
 	public partial class MainPage : ContentPage
 	{
-        public static ILoadingBar loader;
-
         public static bool lotrChecked = true;
         public static bool hpChecked = false;
         public static bool stormChecked = false;
 
-        public MainPage(ILoadingBar l)
+        public MainPage()
         {
             InitializeComponent();
 
@@ -53,8 +51,6 @@ namespace TextGeneration
             checkLOTR.GestureRecognizers.Add(lotrRecognizer);
             checkHP.GestureRecognizers.Add(hpRecognizer);
             checkStorm.GestureRecognizers.Add(stormRecognizer);
-
-            loader = l;
         }
     }
 
@@ -95,7 +91,7 @@ namespace TextGeneration
                         // Load lord of the rings texts
                         try
                         {
-                            MainPage.loader.SetNumTasks(3); // For progress dialog
+                            DependencyService.Get<ILoadingBar>().SetNumTasks(3); // For progress dialog
                             lotr1 = await DependencyService.Get<ILoadingBar>().LoadText(url + "lotr/lordofrings.txt");
                             lotr2 = await DependencyService.Get<ILoadingBar>().LoadText(url + "lotr/twotowers.txt");
                             lotr3 = await DependencyService.Get<ILoadingBar>().LoadText(url + "lotr/returnofking.txt");
@@ -107,7 +103,7 @@ namespace TextGeneration
                         // Load harry potter texts
                         try
                         {
-                            MainPage.loader.SetNumTasks(3); // For progress dialog
+                            DependencyService.Get<ILoadingBar>().SetNumTasks(3); // For progress dialog
                             hp1 = await DependencyService.Get<ILoadingBar>().LoadText(url + "harrypotter/hp1.txt");
                             hp2 = await DependencyService.Get<ILoadingBar>().LoadText(url + "harrypotter/hp2.txt");
                             hp3 = await DependencyService.Get<ILoadingBar>().LoadText(url + "harrypotter/hp3.txt");
@@ -119,7 +115,7 @@ namespace TextGeneration
                         // Load stormbringer texts
                         try
                         {
-                            MainPage.loader.SetNumTasks(2); // For progress dialog
+                            DependencyService.Get<ILoadingBar>().SetNumTasks(2); // For progress dialog
                             storm1 = await DependencyService.Get<ILoadingBar>().LoadText(url + "stormbringer/stormbringer.txt");
                             storm2 = await DependencyService.Get<ILoadingBar>().LoadText(url + "stormbringer/elricofmelniborne.txt");
                         }

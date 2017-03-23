@@ -63,9 +63,8 @@ namespace TextGeneration.UWP
         public MainPage()
         {
             InitializeComponent();
-
-            LoadingBar loader = new LoadingBar();
-            LoadApplication(new TextGeneration.App(loader));
+            
+            LoadApplication(new TextGeneration.App());
         }
     LoadingBar loader = new LoadingBar();}
 }
